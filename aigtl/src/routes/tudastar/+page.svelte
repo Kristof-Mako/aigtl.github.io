@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Cta from '$lib/components/Cta.svelte';
 	import TrustBar from '$lib/components/TrustBar.svelte';
 
@@ -20,7 +21,7 @@
 				'Fedd fel 2 hét alatt, milyen nem engedélyezett AI‑eszközöket használnak a dolgozók, és milyen belső adatok kerülnek ki.',
 			category: 'jogi',
 			kind: 'checklist',
-			href: '/eu-ai-act'
+			href: resolve('/eu-ai-act')
 		},
 		{
 			title: 'Vállalati AI szabályzat minta',
@@ -28,7 +29,7 @@
 				'Testreszabható belső AI Policy sablon: engedélyezett eszközök, tiltott adatkörök, jóváhagyás, incidenskezelés.',
 			category: 'jogi',
 			kind: 'sablon',
-			href: '/eu-ai-act'
+			href: resolve('/eu-ai-act')
 		},
 		{
 			title: 'EU AI Act határidő‑kalkulátor',
@@ -36,7 +37,7 @@
 				'Számold ki cégméret és AI‑használat alapján, mely kötelezettségek mikor esedékesek.',
 			category: 'jogi',
 			kind: 'kalkulator',
-			href: '/eu-ai-act'
+			href: resolve('/eu-ai-act')
 		},
 		{
 			title: 'AI‑leltár sablon (kockázati besorolással)',
@@ -44,7 +45,7 @@
 				'Excel + útmutató a jogszabály által elvárt AI‑leltárhoz, tiltott / magas / korlátozott / minimális szintekkel.',
 			category: 'jogi',
 			kind: 'sablon',
-			href: '/eu-ai-act'
+			href: resolve('/eu-ai-act')
 		},
 		{
 			title: 'Középvezetői use‑case felmérő',
@@ -52,7 +53,7 @@
 				'Egyoldalas felmérő, amivel a csapatod önállóan feltérképezi a napi folyamatok automatizálható lépéseit.',
 			category: 'operativ',
 			kind: 'sablon',
-			href: '/kozepvezetoi-workshop'
+			href: resolve('/kozepvezetoi-workshop')
 		},
 		{
 			title: 'ROI‑kalkulátor Quick Win projektekhez',
@@ -60,7 +61,7 @@
 				'Becsüld meg az idő‑ és költségmegtakarítást a jelöltre kerülő use‑case‑ekre, mielőtt döntesz a bevezetésről.',
 			category: 'operativ',
 			kind: 'kalkulator',
-			href: '/kozepvezetoi-workshop'
+			href: resolve('/kozepvezetoi-workshop')
 		},
 		{
 			title: 'Esettanulmány: riportálás gyorsítása egy hazai KKV‑nál',
@@ -68,7 +69,7 @@
 				'Konkrét eset: havi menedzsment riport előkészítés 60%‑os időmegtakarítással, változatlan minőség mellett.',
 			category: 'operativ',
 			kind: 'esettanulmany',
-			href: '/kozepvezetoi-workshop'
+			href: resolve('/kozepvezetoi-workshop')
 		},
 		{
 			title: 'AI Champion program útmutató',
@@ -76,7 +77,7 @@
 				'Belső bajnokok kiválasztásának, felkészítésének és mérésének módszertana, sablonokkal.',
 			category: 'operativ',
 			kind: 'sablon',
-			href: '/kozepvezetoi-workshop'
+			href: resolve('/kozepvezetoi-workshop')
 		},
 		{
 			title: 'EU AI Act 4. cikk · HR checklist',
@@ -84,7 +85,7 @@
 				'A kötelező AI‑műveltségi elvárás lefordítva HR‑nyelvre: érintett kör, dokumentáció, igazolás.',
 			category: 'hr',
 			kind: 'checklist',
-			href: '/ai-alapvizsga'
+			href: resolve('/ai-alapvizsga')
 		},
 		{
 			title: 'Kick‑off workshop napirend HR‑nek',
@@ -92,7 +93,7 @@
 				'Minta napirend a motivációs Kick‑offhoz, amit a Neumann Alapkurzus előtt szoktunk levezetni.',
 			category: 'hr',
 			kind: 'sablon',
-			href: '/ai-alapvizsga'
+			href: resolve('/ai-alapvizsga')
 		},
 		{
 			title: 'Esettanulmány: onboarding idő rövidítése AI asszisztenssel',
@@ -100,7 +101,7 @@
 				'Hogyan csökkentette egy 200 fős cég új belépőinek betanulási idejét 40%‑kal, HR fókusszal.',
 			category: 'hr',
 			kind: 'esettanulmany',
-			href: '/ai-alapvizsga'
+			href: resolve('/ai-alapvizsga')
 		},
 		{
 			title: 'HR AI‑használati szabályzat kiegészítő',
@@ -108,7 +109,7 @@
 				'A vállalati AI szabályzat HR‑fókuszú kiegészítője (toborzás, teljesítménymenedzsment, adatvédelem).',
 			category: 'hr',
 			kind: 'sablon',
-			href: '/ai-alapvizsga'
+			href: resolve('/ai-alapvizsga')
 		}
 	];
 
@@ -213,8 +214,8 @@
 	title="Nem találod meg, amire szükséged van?"
 	description="Írj egy sort a szerepkörödről és a helyzetről. Általában 24 órán belül vissza tudunk küldeni egy releváns sablont vagy esettanulmányt."
 	primaryLabel="Kérj testre szabott anyagot"
-	primaryHref="/kapcsolat?tema=tudastar"
+	primaryHref={resolve('/kapcsolat?tema=tudastar')}
 	secondaryLabel="Nézd meg a 3 pillért"
-	secondaryHref="/#pillars"
+	secondaryHref={resolve('/#pillars')}
 	tone="light"
 />

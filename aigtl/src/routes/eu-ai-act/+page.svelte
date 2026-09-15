@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import PillarHero from '$lib/components/PillarHero.svelte';
 	import FeatureCard from '$lib/components/FeatureCard.svelte';
 	import TrustBar from '$lib/components/TrustBar.svelte';
@@ -18,8 +19,8 @@
 	eyebrow="1. pillér · Governance"
 	title="Az AI kockázatot vezetői kontrollrendszerré alakítjuk."
 	lead={`Az <a class="link-brand-invert" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng" target="_blank" rel="noopener">EU AI Act</a>, a Shadow AI és a licencköltségek együtt vezetői felelősséggé váltak. Az AIGTL a jogi bizonytalanságból auditálható, dokumentált kontrollrendszert épít, már az első 90 napban.`}
-	primary={{ label: 'Ingyenes AI‑kockázati konzultáció', href: '/kapcsolat?tema=governance' }}
-	secondary={{ label: '10 pontos Shadow AI checklist', href: '/tudastar' }}
+	primary={{ label: 'Ingyenes AI‑kockázati konzultáció', href: resolve('/kapcsolat?tema=governance') }}
+	secondary={{ label: '10 pontos Shadow AI checklist', href: resolve('/tudastar') }}
 	bullets={[
 		'2 hetes Shadow AI audit mérhető eredménnyel',
 		'Vállalati AI szabályzat és belső AI‑leltár',
@@ -190,7 +191,7 @@
 	title="Első lépés: egy 30 perces AI‑kockázati konzultáció."
 	description="Áttekintjük a jelenlegi AI‑kitettséget, megnevezzük a 3 legnagyobb rövid távú kockázatot, és javaslatot adunk a 90 napos governance ütemtervre."
 	primaryLabel="Konzultáció foglalása"
-	primaryHref="/kapcsolat?tema=governance"
+	primaryHref={resolve('/kapcsolat?tema=governance')}
 	secondaryLabel="Kapcsolódó tudástár"
-	secondaryHref="/tudastar?filter=jogi"
+	secondaryHref={resolve('/tudastar?filter=jogi')}
 />

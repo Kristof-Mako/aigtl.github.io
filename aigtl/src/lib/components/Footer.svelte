@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
+
 <footer class="mt-24 border-t border-ink-100 bg-ink-950 text-ink-200">
 	<div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-4 lg:px-10">
 		<div class="lg:col-span-2">
@@ -21,23 +25,23 @@
 		<div>
 			<h3 class="text-xs font-semibold tracking-wider text-ink-400 uppercase">Pillérek</h3>
 			<ul class="mt-4 space-y-2 text-sm">
-				<li><a href="/eu-ai-act" class="hover:text-white">EU AI Act &amp; governance</a></li>
+				<li><a href={resolve('/eu-ai-act')} class="hover:text-white">EU AI Act &amp; governance</a></li>
 				<li>
-					<a href="/kozepvezetoi-workshop" class="hover:text-white">Középvezetői workshop</a>
+					<a href={resolve('/kozepvezetoi-workshop')} class="hover:text-white">Középvezetői workshop</a>
 				</li>
 				<li>
-					<a href="/ai-alapvizsga" class="hover:text-white">Vállalati AI alapvizsga (HR)</a>
+					<a href={resolve('/ai-alapvizsga')} class="hover:text-white">Vállalati AI alapvizsga (HR)</a>
 				</li>
-				<li><a href="/tudastar" class="hover:text-white">Tudástár</a></li>
+				<li><a href={resolve('/tudastar')} class="hover:text-white">Tudástár</a></li>
 			</ul>
 		</div>
 
 		<div>
 			<h3 class="text-xs font-semibold tracking-wider text-ink-400 uppercase">Cég</h3>
 			<ul class="mt-4 space-y-2 text-sm">
-				<li><a href="/rolunk" class="hover:text-white">Rólunk</a></li>
-				<li><a href="/kapcsolat" class="hover:text-white">Kapcsolat</a></li>
-				<li><a href="/adatkezeles" class="hover:text-white">Adatkezelés</a></li>
+				<li><a href={resolve('/rolunk')} class="hover:text-white">Rólunk</a></li>
+				<li><a href={resolve('/kapcsolat')} class="hover:text-white">Kapcsolat</a></li>
+				<li><a href={resolve('/adatkezeles')} class="hover:text-white">Adatkezelés</a></li>
 			</ul>
 		</div>
 	</div>

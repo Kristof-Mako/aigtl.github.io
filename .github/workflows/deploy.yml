@@ -38,6 +38,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          BASE_PATH: /aigtl.github.io
 
       - name: Ensure .nojekyll
         run: touch build/.nojekyll

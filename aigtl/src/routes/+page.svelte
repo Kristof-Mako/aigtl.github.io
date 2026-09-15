@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import PillarCard from '$lib/components/PillarCard.svelte';
 	import TrustBar from '$lib/components/TrustBar.svelte';
 	import Cta from '$lib/components/Cta.svelte';
@@ -48,7 +49,7 @@
 
 			<div class="mt-10 flex flex-wrap items-center gap-3">
 				<a
-					href="/kapcsolat"
+					href={resolve('/kapcsolat')}
 					class="inline-flex items-center gap-2 rounded-md bg-accent-400 px-5 py-3 text-sm font-semibold text-ink-950 transition-colors hover:bg-accent-300"
 				>
 					Ingyenes AI‑kockázati konzultáció
@@ -187,7 +188,7 @@
 				amelyekkel már a következő vezetői megbeszélésen dolgozható eredményt tudsz felmutatni.
 			</p>
 			<a
-				href="/tudastar"
+				href={resolve('/tudastar')}
 				class="mt-8 inline-flex items-center gap-2 rounded-md bg-ink-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink-800"
 			>
 				Böngészd a tudástárat
@@ -239,7 +240,7 @@
 	title="Kezdd a helyzetfelméréssel. 30 perc alatt tisztább a kép."
 	description="Egy rövid, kötelezettségmentes konzultáción megnézzük, hol tart most a céged AI‑governance, adopció és képzés szempontjából, és melyik pillérrel érdemes indulni."
 	primaryLabel="Konzultáció foglalása"
-	primaryHref="/kapcsolat"
+	primaryHref={resolve('/kapcsolat')}
 	secondaryLabel="Írj emailt"
 	secondaryHref="mailto:hello@aigtl.hu"
 />

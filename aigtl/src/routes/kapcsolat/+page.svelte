@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 
 	type Topic = 'governance' | 'workshop' | 'hr' | 'tudastar' | 'egyeb';
@@ -115,12 +116,12 @@
 					</p>
 					<div class="mt-6 flex flex-wrap justify-center gap-3">
 						<a
-							href="/tudastar"
+							href={resolve('/tudastar')}
 							class="inline-flex items-center gap-2 rounded-md bg-ink-900 px-4 py-2 text-sm font-medium text-white hover:bg-ink-800"
 							>Tudástár</a
 						>
 						<a
-							href="/"
+							href={resolve('/')}
 							class="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-ink-900 ring-1 ring-ink-300 ring-inset hover:bg-ink-50"
 							>Vissza a főoldalra</a
 						>
@@ -219,7 +220,7 @@
 								class="mt-1 h-4 w-4 rounded border-ink-300 text-ink-900 focus:ring-ink-900/10"
 							/>
 							<span>
-								Elolvastam az <a class="underline underline-offset-4 hover:text-ink-900" href="/adatkezeles"
+								Elolvastam az <a class="underline underline-offset-4 hover:text-ink-900" href={resolve('/adatkezeles')}
 									>adatkezelési tájékoztatót</a
 								> és hozzájárulok az adataim kapcsolatfelvételi célból történő kezeléséhez.
 							</span>

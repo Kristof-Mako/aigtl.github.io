@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import PillarHero from '$lib/components/PillarHero.svelte';
 	import FeatureCard from '$lib/components/FeatureCard.svelte';
 	import TrustBar from '$lib/components/TrustBar.svelte';
@@ -18,7 +19,7 @@
 	eyebrow="3. pillér · AI Literacy"
 	title="Az AI Literacy kötelezettséget letesszük a HR asztalára."
 	lead={`Az <a class="link-brand-invert" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng" target="_blank" rel="noopener">EU AI Act</a> 4. cikke igazolható AI‑műveltséget vár el a munkavállalóktól. Nem kell drága licenc: a hazai <a class="link-brand-invert" href="https://neum.hu/" target="_blank" rel="noopener">Neumann Platform</a> ingyenes alapkurzusa és a mi prémium menedzsmentünk együtt auditálható megfelelést ad.`}
-	primary={{ label: 'Kérj HR konzultációt', href: '/kapcsolat?tema=hr' }}
+	primary={{ label: 'Kérj HR konzultációt', href: resolve('/kapcsolat?tema=hr') }}
 	secondary={{ label: 'Nézd meg a dashboardot', href: '#dashboard' }}
 	bullets={[
 		'Ingyenes, egyetemileg hitelesített alapkurzus',
@@ -351,7 +352,7 @@
 	title="Egy 30 perces beszélgetésen megmutatjuk a dashboardot élőben."
 	description="Áttekintjük a HR jelenlegi kötelezettségeit, becslést adunk az érintett létszámra és időzítésre, és összeállítjuk a csomagot, amit a vezetés elé tudsz vinni."
 	primaryLabel="HR konzultáció foglalása"
-	primaryHref="/kapcsolat?tema=hr"
+	primaryHref={resolve('/kapcsolat?tema=hr')}
 	secondaryLabel="Governance pillér"
-	secondaryHref="/eu-ai-act"
+	secondaryHref={resolve('/eu-ai-act')}
 />

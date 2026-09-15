@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import PillarHero from '$lib/components/PillarHero.svelte';
 	import FeatureCard from '$lib/components/FeatureCard.svelte';
 	import TrustBar from '$lib/components/TrustBar.svelte';
@@ -54,7 +55,7 @@
 	eyebrow="2. pillér · Adopció"
 	title="Az AI bevezetés nem a technológián, hanem a középvezetőn múlik."
 	lead="A workshopjaink a félelmet partnerséggé fordítják: konkrét use‑case‑eket azonosítunk, ROI‑alapon rangsorolunk, és belső AI Championokat képezünk, akik önállóan viszik tovább."
-	primary={{ label: 'Foglalj workshopot a csapatodnak', href: '/kapcsolat?tema=workshop' }}
+	primary={{ label: 'Foglalj workshopot a csapatodnak', href: resolve('/kapcsolat?tema=workshop') }}
 	secondary={{ label: 'Nézd meg a use‑case‑eket', href: '#use-cases' }}
 	bullets={[
 		'Fókusz a Quick Win use‑case‑eken',
@@ -220,7 +221,7 @@
 	title="Egy jól levezetett workshop a különbség pilot és pilotbukás között."
 	description="Ha a csapat maga fedezi fel a use‑case‑eket és tervezi meg a bevezetést, sokkal nagyobb eséllyel áll melléd a végrehajtásban is. Foglaljunk időpontot egy előkészítő beszélgetésre."
 	primaryLabel="Workshop foglalása"
-	primaryHref="/kapcsolat?tema=workshop"
+	primaryHref={resolve('/kapcsolat?tema=workshop')}
 	secondaryLabel="Nézd meg a governance pillért"
-	secondaryHref="/eu-ai-act"
+	secondaryHref={resolve('/eu-ai-act')}
 />

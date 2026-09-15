@@ -1,13 +1,14 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 
 	type NavItem = { href: string; label: string };
 	const items: NavItem[] = [
-		{ href: '/eu-ai-act', label: 'EU AI Act' },
-		{ href: '/kozepvezetoi-workshop', label: 'Workshop' },
-		{ href: '/ai-alapvizsga', label: 'AI alapvizsga' },
-		{ href: '/tudastar', label: 'Tudástár' },
-		{ href: '/rolunk', label: 'Rólunk' }
+		{ href: resolve('/eu-ai-act'), label: 'EU AI Act' },
+		{ href: resolve('/kozepvezetoi-workshop'), label: 'Workshop' },
+		{ href: resolve('/ai-alapvizsga'), label: 'AI alapvizsga' },
+		{ href: resolve('/tudastar'), label: 'Tudástár' },
+		{ href: resolve('/rolunk'), label: 'Rólunk' }
 	];
 
 	let open = $state(false);
@@ -16,7 +17,7 @@
 
 <header class="sticky top-0 z-40 w-full border-b border-ink-100 bg-white/85 backdrop-blur">
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-		<a href="/" class="group flex items-center gap-3" aria-label="AIGTL kezdőoldal">
+		<a href={resolve('/')} class="group flex items-center gap-3" aria-label="AIGTL kezdőoldal">
 			<span
 				class="grid h-9 w-9 place-items-center rounded-lg bg-ink-900 font-semibold tracking-tight text-white"
 				>A</span
@@ -43,7 +44,7 @@
 				</a>
 			{/each}
 			<a
-				href="/kapcsolat"
+				href={resolve('/kapcsolat')}
 				class="ml-3 inline-flex items-center gap-2 rounded-md bg-ink-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-ink-800"
 			>
 				Konzultáció
@@ -91,7 +92,7 @@
 					</a>
 				{/each}
 				<a
-					href="/kapcsolat"
+					href={resolve('/kapcsolat')}
 					class="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-ink-900 px-4 py-3 text-sm font-medium text-white"
 					onclick={() => (open = false)}
 				>

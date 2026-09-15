@@ -19,6 +19,10 @@ export default defineConfig({
 				precompress: false,
 				strict: true
 			}),
+			// Subpath prefix for project-page hosting; empty for local dev and custom domain.
+			paths: {
+				base: process.env.BASE_PATH ?? ''
+			},
 			prerender: {
 				entries: ['*']
 			}

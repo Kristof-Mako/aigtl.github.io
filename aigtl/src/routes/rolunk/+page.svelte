@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import TrustBar from '$lib/components/TrustBar.svelte';
 	import Cta from '$lib/components/Cta.svelte';
 </script>
@@ -137,7 +138,7 @@
 	title="Beszéljünk arról, hol tart most a céged."
 	description="30 perc alatt megnézzük együtt, melyik pillérből érdemes indulni, és milyen konkrét lépések adnak 90 napon belüli látható eredményt."
 	primaryLabel="Konzultáció foglalása"
-	primaryHref="/kapcsolat"
+	primaryHref={resolve('/kapcsolat')}
 	secondaryLabel="Nézd meg a pilléreket"
-	secondaryHref="/#pillars"
+	secondaryHref={resolve('/#pillars')}
 />
