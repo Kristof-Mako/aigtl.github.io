@@ -8,10 +8,11 @@
 </script>
 
 <article
-	class="flex h-full flex-col rounded-xl border border-ink-100 bg-white p-6 transition-colors hover:border-ink-200"
+	class="feature-card flex h-full flex-col rounded-xl border p-6"
 >
 	<div
-		class="grid h-10 w-10 place-items-center rounded-lg bg-ink-50 text-ink-900 ring-1 ring-ink-100"
+		class="grid h-10 w-10 place-items-center rounded-lg"
+		style="background-color: var(--color-surface-alt); color: var(--color-primary); box-shadow: 0 0 0 1px var(--color-border);"
 		aria-hidden="true"
 	>
 		<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -73,10 +74,22 @@
 		</svg>
 	</div>
 
-	<h3 class="mt-5 text-base leading-snug font-semibold tracking-tight text-ink-900">
+	<h3 class="mt-5 text-base leading-snug font-semibold tracking-tight" style="color: var(--color-text);">
 		{title}
 	</h3>
-	<p class="mt-2 text-sm leading-relaxed text-ink-600">
+	<p class="mt-2 text-sm leading-relaxed" style="color: var(--color-text-muted);">
 		{@html description}
 	</p>
 </article>
+
+<style>
+	.feature-card {
+		border-color: var(--color-border);
+		background-color: var(--color-surface);
+		transition: border-color 180ms ease;
+	}
+
+	.feature-card:hover {
+		border-color: var(--color-border-strong);
+	}
+</style>

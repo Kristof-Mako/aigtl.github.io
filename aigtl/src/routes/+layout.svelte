@@ -11,7 +11,10 @@
 	<link rel="icon" href={resolve('/favicon.svg')} />
 </svelte:head>
 
-<div class="flex min-h-screen flex-col bg-white text-ink-900">
+<div
+	class="flex min-h-screen flex-col"
+	style="background-color: var(--color-bg); color: var(--color-text);"
+>
 	<Header />
 	<main class="flex-1">
 		{@render children()}

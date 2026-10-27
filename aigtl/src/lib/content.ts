@@ -30,18 +30,18 @@ export const pillars: Pillar[] = [
 		title: 'EU AI Act megfelelőség és vállalati AI governance',
 		audience: 'CEO · CFO · jogtanácsos · CIO · CISO',
 		promise:
-			'A jogi bizonytalanságból auditálható kontrollrendszert építünk: AI‑leltár, szabályzat, Shadow AI audit, licencoptimalizálás.',
+			'A jogi bizonytalanságból auditálható kontrollrendszert építünk: AI-leltár, szabályzat, Shadow AI audit, licencoptimalizálás.',
 		tone: 'trust',
-		cta: { label: 'Ingyenes AI‑kockázati konzultáció', href: resolve('/kapcsolat?tema=governance') }
+		cta: { label: 'Ingyenes AI-kockázati konzultáció', href: resolve('/kapcsolat?tema=governance') }
 	},
 	{
 		slug: 'workshop',
 		href: resolve('/kozepvezetoi-workshop'),
 		eyebrow: '2. pillér · Adopció',
-		title: 'Középvezetői AI workshop és belső use‑case tervezés',
-		audience: 'COO · divízió‑ és csoportvezetők',
+		title: 'Középvezetői AI workshop és belső use-case tervezés',
+		audience: 'COO · divízió- és csoportvezetők',
 		promise:
-			'A középvezetői ellenállást partnerségre váltjuk: konkrét use‑case‑ek, ROI‑alapú rangsor, AI Champion program.',
+			'A középvezetői ellenállást partnerségre váltjuk: konkrét use-case-ek, ROI-alapú rangsor, AI Champion program.',
 		tone: 'action',
 		cta: { label: 'Foglalj workshopot a csapatodnak', href: resolve('/kapcsolat?tema=workshop') }
 	},

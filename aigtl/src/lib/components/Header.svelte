@@ -4,40 +4,47 @@
 
 	type NavItem = { href: string; label: string };
 	const items: NavItem[] = [
+		{ href: `${resolve('/')}#vezetoi-workshop`, label: 'Vezetői workshop' },
 		{ href: resolve('/eu-ai-act'), label: 'EU AI Act' },
-		{ href: resolve('/kozepvezetoi-workshop'), label: 'Workshop' },
+		{ href: resolve('/kozepvezetoi-workshop'), label: 'Középvezetői program' },
 		{ href: resolve('/ai-alapvizsga'), label: 'AI alapvizsga' },
 		{ href: resolve('/tudastar'), label: 'Tudástár' },
 		{ href: resolve('/rolunk'), label: 'Rólunk' }
 	];
 
 	let open = $state(false);
-	const path = $derived(page.url.pathname);
+	function normalizePath(pathname: string) {
+		const normalized = pathname.replace(/\/+$/, '');
+		return normalized || '/';
+	}
+	const path = $derived(normalizePath(page.url.pathname));
+	function isActive(href: string) {
+		const itemPath = normalizePath(new URL(href, page.url).pathname);
+		return path === itemPath || (itemPath !== '/' && path.startsWith(`${itemPath}/`));
+	}
 </script>
 
-<header class="sticky top-0 z-40 w-full border-b border-ink-100 bg-white/85 backdrop-blur">
+<header class="site-header sticky top-0 z-40 w-full border-b backdrop-blur">
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
 		<a href={resolve('/')} class="group flex items-center gap-3" aria-label="AIGTL kezdőoldal">
 			<span
-				class="grid h-9 w-9 place-items-center rounded-lg bg-ink-900 font-semibold tracking-tight text-white"
+				class="brand-mark grid h-9 w-9 place-items-center rounded-lg font-semibold tracking-tight"
 				>A</span
 			>
 			<span class="flex flex-col leading-tight">
-				<span class="text-sm font-semibold tracking-tight text-ink-900">AIGTL</span>
-				<span class="hidden text-xs text-ink-500 sm:block"
-					>AI Governance, Transformation &amp; Lab</span
+				<span class="brand-name text-sm font-semibold tracking-tight">AIGTL</span>
+				<span class="brand-subtitle hidden text-xs sm:block"
+					>AI Governance, Transformation &amp; Labs</span
 				>
 			</span>
 		</a>
 
 		<nav class="hidden items-center gap-1 lg:flex" aria-label="Fő navigáció">
 			{#each items as item (item.href)}
-				{@const active = path === item.href || path.startsWith(item.href + '/')}
+				{@const active = isActive(item.href)}
 				<a
 					href={item.href}
-					class="rounded-md px-3 py-2 text-sm font-medium transition-colors {active
-						? 'text-ink-900'
-						: 'text-ink-600 hover:text-ink-900'}"
+					class="nav-link rounded-md px-3 py-2 text-sm font-medium transition-colors {active ? 'active' : ''}"
 					aria-current={active ? 'page' : undefined}
 				>
 					{item.label}
@@ -45,7 +52,7 @@
 			{/each}
 			<a
 				href={resolve('/kapcsolat')}
-				class="ml-3 inline-flex items-center gap-2 rounded-md bg-ink-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-ink-800"
+				class="primary-action ml-3 inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors"
 			>
 				Konzultáció
 				<span aria-hidden="true">→</span>
@@ -54,7 +61,7 @@
 
 		<button
 			type="button"
-			class="inline-flex items-center justify-center rounded-md p-2 text-ink-700 lg:hidden"
+			class="menu-toggle inline-flex items-center justify-center rounded-md p-2 lg:hidden"
 			aria-label="Menü megnyitása"
 			aria-expanded={open}
 			onclick={() => (open = !open)}
@@ -80,12 +87,14 @@
 	</div>
 
 	{#if open}
-		<div class="border-t border-ink-100 bg-white lg:hidden">
+		<div class="mobile-menu border-t lg:hidden">
 			<nav class="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4" aria-label="Mobil navigáció">
 				{#each items as item (item.href)}
+					{@const active = isActive(item.href)}
 					<a
 						href={item.href}
-						class="rounded-md px-3 py-3 text-base font-medium text-ink-800 hover:bg-ink-50"
+						class="mobile-nav-link rounded-md px-3 py-3 text-base font-medium {active ? 'active' : ''}"
+						aria-current={active ? 'page' : undefined}
 						onclick={() => (open = false)}
 					>
 						{item.label}
@@ -93,7 +102,7 @@
 				{/each}
 				<a
 					href={resolve('/kapcsolat')}
-					class="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-ink-900 px-4 py-3 text-sm font-medium text-white"
+					class="primary-action mt-2 inline-flex items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-medium"
 					onclick={() => (open = false)}
 				>
 					Konzultáció kérése
@@ -102,3 +111,29 @@
 		</div>
 	{/if}
 </header>
+
+<style>
+	.site-header {
+		border-color: var(--color-border);
+		background-color: color-mix(in srgb, var(--color-surface) 85%, var(--color-transparent));
+	}
+	.brand-mark,
+	.primary-action {
+		background-color: var(--color-primary);
+		color: var(--color-on-primary);
+	}
+	.primary-action:hover { background-color: var(--color-primary-hover); }
+	.brand-name { color: var(--color-text); }
+	.brand-subtitle { color: var(--color-text-subtle); }
+	.nav-link { color: var(--color-text-muted); }
+	.nav-link:hover,
+	.nav-link.active { color: var(--color-text); }
+	.mobile-menu {
+		border-color: var(--color-border);
+		background-color: var(--color-surface);
+	}
+	.menu-toggle { color: var(--color-secondary); }
+	.mobile-nav-link { color: var(--color-primary-hover); }
+	.mobile-nav-link:hover,
+	.mobile-nav-link.active { background-color: var(--color-surface-alt); }
+</style>

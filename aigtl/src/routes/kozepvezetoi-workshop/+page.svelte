@@ -9,19 +9,14 @@
 	type UseCase = { area: string; title: string; benefit: string };
 	const useCases: UseCase[] = [
 		{
-			area: 'Riportálás',
-			title: 'Vezetői jelentések gyorsítása',
-			benefit: 'Havi zárás és menedzsment riport előkészítés akár 60%‑kal rövidebb idő alatt.'
-		},
-		{
 			area: 'Ügyfélszolgálat',
 			title: 'Első vonalas válaszok támogatása',
 			benefit:
-				'Belső tudásbázisra épített asszisztensek: gyorsabb válaszidő, alacsonyabb ticket‑volumen.'
+				'Belső tudásbázisra épített asszisztensek: gyorsabb válaszidő, alacsonyabb ticketvolumen.'
 		},
 		{
 			area: 'Pénzügy',
-			title: 'Számla‑ és dokumentumkezelés',
+			title: 'Számla- és dokumentumkezelés',
 			benefit: 'Adatkinyerés, jóváhagyási folyamat rövidítése, kevesebb manuális hiba.'
 		},
 		{
@@ -32,38 +27,30 @@
 		},
 		{
 			area: 'Értékesítés',
-			title: 'Előkészített ügyfél‑insightok',
-			benefit: 'Gyorsabb prospect‑kutatás, releváns ajánlatok, magasabb konverzió.'
+			title: 'Előkészített ügyfél-insightok',
+			benefit: 'Gyorsabb prospect-kutatás, releváns ajánlatok, magasabb konverzió.'
 		},
-		{
-			area: 'HR és onboarding',
-			title: 'Betanulási idő rövidítése',
-			benefit: 'Belső AI asszisztens az új belépőknek, tipikusan 30–50%‑os betanulási idő csökkentés.'
-		}
 	];
 </script>
 
 <svelte:head>
-	<title>Középvezetői AI workshop és use‑case tervezés | AIGTL</title>
-	<meta
-		name="description"
-		content="Konkrét use‑case‑ek, ROI‑alapú rangsor, AI Champion program. A középvezetői ellenállást partnerségre váltjuk, 50–500 fős magyar cégeknek."
-	/>
+	<title>Középvezetői AI workshop és use-case tervezés | AIGTL</title>
 </svelte:head>
 
 <PillarHero
 	eyebrow="2. pillér · Adopció"
-	title="Az AI bevezetés nem a technológián, hanem a középvezetőn múlik."
-	lead="A workshopjaink a félelmet partnerséggé fordítják: konkrét use‑case‑eket azonosítunk, ROI‑alapon rangsorolunk, és belső AI Championokat képezünk, akik önállóan viszik tovább."
+	title="Az AI-bevezetés a középvezetőkön áll vagy bukik: tegyük őket a szervezeti változás motorjává"
+	lead="A vállalati AI-projektek megvalósításakor a leggyakoribb akadály nem a szoftverek hiányossága, hanem a humán bizonytalanság. A középvezetők féltik csapataik létszámát, az operatív kontrollt és a megszokott munkafolyamatokat. A mi munkánk az, hogy ezt a félelmet partnerségre fordítsuk, és a vezetőkkel közösen azonosítsuk azokat a folyamatelemeket, ahol az automatizáció azonnal érdemi munkaórákat szabadít fel."
 	primary={{ label: 'Foglalj workshopot a csapatodnak', href: resolve('/kapcsolat?tema=workshop') }}
-	secondary={{ label: 'Nézd meg a use‑case‑eket', href: '#use-cases' }}
+	secondary={{ label: 'Nézd meg a use-case-eket', href: '#use-cases' }}
 	bullets={[
-		'Fókusz a Quick Win use‑case‑eken',
-		'ROI‑alapú prioritizálás és ötletszűrés',
-		'AI Champion / Ranger program',
-		'Agentic AI felkészítés önálló feladatokra'
+		'Use-case azonosítás a napi működésből',
+		'30 napos ROI és prioritizálás',
+		'Változáskezelés a középvezetői ellenállás leküzdésére',
+		'AI Ranger program a belső tudás fenntartására'
 	]}
 	variant="action"
+	circuitVariant="workshop"
 />
 
 <TrustBar variant="light" />
@@ -72,46 +59,32 @@
 <section class="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
 	<div class="grid gap-10 lg:grid-cols-3 lg:gap-14">
 		<div class="lg:col-span-1">
-			<div class="text-xs font-semibold tracking-widest text-ink-500 uppercase">Kinek szól</div>
-			<h2 class="mt-3 text-2xl font-semibold tracking-tight text-ink-900 md:text-3xl">
-				COO · divízió‑ és csoportvezetők
+			<div class="text-xs font-semibold tracking-widest text-[var(--color-text-subtle)] uppercase">Kinek szól</div>
+			<h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--color-text)] md:text-3xl">
+				COO · divízió- és csoportvezetők
 			</h2>
-			<p class="mt-4 text-base leading-relaxed text-ink-600">
-				A pilótabuk 90%‑a nem a technológián, hanem <strong>a középvezetői ellenállásán</strong>
-				múlik. Ez a pillér azoknak szól, akik érzik: a csapat fenyeget, a vezetőség sürget, és
-				szükségük van egy módszertanra, ami mindkét oldalt kezeli.
-			</p>
 		</div>
 		<div class="lg:col-span-2">
 			<div class="grid gap-4 sm:grid-cols-2">
-				<div class="rounded-xl border border-ink-100 bg-ink-50/60 p-6">
-					<div class="text-xs font-semibold tracking-wider text-ink-500 uppercase">A félelem</div>
-					<p class="mt-3 text-sm text-ink-700">
-						„Ha bevezetjük az AI‑t, a csapatom úgy érzi, kiváltják őket, és én maradok a
+				<div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
+					<div class="text-xs font-semibold tracking-wider text-[var(--color-text-subtle)] uppercase">A félelem</div>
+					<p class="mt-3 text-sm text-[var(--color-text-muted)]">
+						„Ha bevezetjük az AI-t, a csapatom úgy érzi, kiváltják őket, és én maradok a
 						hibáztatott.”
 					</p>
 				</div>
-				<div class="rounded-xl border border-ink-100 bg-ink-50/60 p-6">
-					<div class="text-xs font-semibold tracking-wider text-ink-500 uppercase">A kérdés</div>
-					<p class="mt-3 text-sm text-ink-700">
-						„Mely 2–3 folyamattal érdemes elkezdeni, hogy 60 napon belül látható eredmény
+				<div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
+					<div class="text-xs font-semibold tracking-wider text-[var(--color-text-subtle)] uppercase">A kérdés</div>
+					<p class="mt-3 text-sm text-[var(--color-text-muted)]">
+						„Mely 2-3 folyamattal érdemes elkezdeni, hogy 60 napon belül látható eredmény
 						legyen?”
 					</p>
 				</div>
-				<div class="rounded-xl border border-ink-100 bg-ink-50/60 p-6">
-					<div class="text-xs font-semibold tracking-wider text-ink-500 uppercase">A cél</div>
-					<p class="mt-3 text-sm text-ink-700">
-						Csapatszintű bevonás, kézzelfogható Quick Win‑ek, és önállóan tovább vihető AI
-						Champion‑ok.
-					</p>
-				</div>
-				<div class="rounded-xl border border-ink-100 bg-ink-50/60 p-6">
-					<div class="text-xs font-semibold tracking-wider text-ink-500 uppercase">
-						A pszichológia
-					</div>
-					<p class="mt-3 text-sm text-ink-700">
-						Konvertáló motívum: <strong>partnerség és irányítás</strong>. A vezető nem elváró,
-						hanem támogató példamutató lesz.
+				<div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
+					<div class="text-xs font-semibold tracking-wider text-[var(--color-text-subtle)] uppercase">A cél</div>
+					<p class="mt-3 text-sm text-[var(--color-text-muted)]">
+						Csapatszintű bevonás, kézzelfogható Quick Win-ek, és önállóan tovább vihető AI
+						Champion-ok.
 					</p>
 				</div>
 			</div>
@@ -120,51 +93,71 @@
 </section>
 
 <!-- Modulok -->
-<section class="border-t border-ink-100 bg-ink-50/40">
+<section class="border-t border-[var(--color-border)] bg-[var(--color-surface-alt)]">
 	<div class="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
 		<div class="max-w-3xl">
-			<div class="text-xs font-semibold tracking-widest text-ink-500 uppercase">
+			<div class="text-xs font-semibold tracking-widest text-[var(--color-text-subtle)] uppercase">
 				Workshop modulok
 			</div>
-			<h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-900 md:text-4xl">
+			<h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-text)] md:text-4xl">
 				Nem előadás, hanem vezetői munkaműhely.
 			</h2>
-			<p class="mt-4 text-lg leading-relaxed text-ink-600">
+			<p class="mt-4 text-lg leading-relaxed text-[var(--color-text-muted)]">
 				A workshop során a résztvevők a saját folyamataikra dolgoznak. Konkrét,
 				megvalósítható tervet visznek haza, nem csak inspirációt.
 			</p>
 		</div>
 
+		<div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-[var(--color-text-muted)]">
+			<span class="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2">1 nap vagy 2 fél nap</span>
+			<span class="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2">Azonos programdíj</span>
+		</div>
+
 		<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			<FeatureCard
+				icon="shield"
+				title="A vezetői keret átvétele"
+				description="Közös AI-nyelv, játékszabályok és a digitális kollégák kerete."
+			/>
+			<FeatureCard
+				icon="policy"
+				title="AI-műveltség és EU AI Act"
+				description="A csapat munkáját érintő tudás és felelős használat."
+			/>
+			<FeatureCard
 				icon="users"
-				title="Ellenálláskezelés és változásvezetés"
-				description={`A <a class="link-brand" href="https://sensa.hu/" target="_blank" rel="noopener">Sensa</a> szervezetfejlesztési tapasztalatára építve: hogyan válik a középvezető elvárótól hiteles támogatóvá a csapat szemében.`}
+				title="Bevonás és változásvezetés"
+				description="Ellenállás, hiteles kommunikáció, eltérő AI-érettség."
 			/>
 			<FeatureCard
 				icon="lightbulb"
-				title="Use‑case azonosítás"
-				description="Módszertan a repetitív, adminisztratív és hibalehetőségeket rejtő feladatok felkutatására a napi munkafolyamatokból, nem generikus listákból."
-			/>
-			<FeatureCard
-				icon="chart"
-				title="ROI‑alapú rangsorolás"
-				description="Ötletszűrés: életképtelen ötletek gyors kiszűrése, Quick Win projektek priorizálása mérhető megtérülés alapján."
+				title="Use-case kártyák"
+				description="Saját probléma, jelenlegi folyamat, mérőszám és első lépés."
 			/>
 			<FeatureCard
 				icon="workflow"
-				title="Gyakorlati esetpéldák"
-				description="Riportálás, ügyfélszolgálat, számla‑ és dokumentumkezelés, belső kommunikáció. Konkrét minták, adaptálható folyamattérképekkel."
+				title="Digitális kolléga feladatleírása"
+				description="Feladatok, korlátok és üzlet-HR-IT egyeztetési pontok."
 			/>
 			<FeatureCard
-				icon="trophy"
-				title="AI Champion / Ranger program"
-				description="Belső bajnokok képzése, akik a workshop után önállóan viszik tovább a folyamatoptimalizálást és felkészítik a csapatot az Agentic AI szintre."
+				icon="chart"
+				title="ROI-becslés és rangsorolás"
+				description="Hatás és erőfeszítés; konzervatív és reális forgatókönyv."
+			/>
+			<FeatureCard
+				icon="users"
+				title="Beszélgetések a kollégákkal"
+				description="Ötletgyűjtés, szerepváltozás és nehéz beszélgetések gyakorlása."
 			/>
 			<FeatureCard
 				icon="shield"
-				title="Governance‑horgony"
-				description="A workshop illeszkedik a vállalati AI szabályzathoz (1. pillér), így az adopció nem termel új Shadow AI kockázatot."
+				title="Hibakezelés és közös mérés"
+				description="Emberi ellenőrzés, felszabaduló idő és eredménymutatók."
+			/>
+			<FeatureCard
+				icon="trophy"
+				title="30-60-90 napos csapatterv"
+				description="Lépések felelőssel, a Champion program bemutatása."
 			/>
 		</div>
 	</div>
@@ -173,11 +166,11 @@
 <!-- Use case grid -->
 <section id="use-cases" class="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
 	<div class="mb-10 max-w-3xl">
-		<div class="text-xs font-semibold tracking-widest text-ink-500 uppercase">Use‑case‑ek</div>
-		<h2 class="mt-3 text-3xl font-semibold tracking-tight text-ink-900 md:text-4xl">
-			Ezek azok a területek, ahol a Quick Win‑ek megjelennek.
+		<div class="text-xs font-semibold tracking-widest text-[var(--color-text-subtle)] uppercase">Use-case-ek</div>
+		<h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-text)] md:text-4xl">
+			Ezek azok a területek, ahol a Quick Win-ek megjelennek.
 		</h2>
-		<p class="mt-4 text-lg leading-relaxed text-ink-600">
+		<p class="mt-4 text-lg leading-relaxed text-[var(--color-text-muted)]">
 			A workshopon nem a listából választunk: a résztvevők saját folyamataikat térképezik fel.
 			Ezek csak orientáló minták, hogy mire számíthatsz.
 		</p>
@@ -185,12 +178,12 @@
 
 	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 		{#each useCases as uc, i (i)}
-			<article class="rounded-xl border border-ink-100 bg-white p-6">
-				<div class="text-xs font-semibold tracking-wider text-accent-500 uppercase">
+			<article class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+				<div class="text-xs font-semibold tracking-wider text-[var(--color-primary)] uppercase">
 					{uc.area}
 				</div>
-				<h3 class="mt-3 text-base font-semibold tracking-tight text-ink-900">{uc.title}</h3>
-				<p class="mt-2 text-sm leading-relaxed text-ink-600">{uc.benefit}</p>
+				<h3 class="mt-3 text-base font-semibold tracking-tight text-[var(--color-text)]">{uc.title}</h3>
+				<p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{uc.benefit}</p>
 			</article>
 		{/each}
 	</div>
@@ -207,19 +200,102 @@
 		{
 			title: '2. Munkaműhely nap',
 			description:
-				'Fókuszált egynapos workshop: ellenálláskezelés, use‑case azonosítás, ROI‑rangsor, akcióterv.'
+				'Fókuszált egynapos workshop: ellenálláskezelés, use-case azonosítás, ROI-rangsor, akcióterv.'
 		},
 		{
-			title: '3. AI Champion follow‑up',
+			title: '3. Külön választható folytatás',
 			description:
-				'Kijelölt bajnokok felkészítése, 60 napos coaching, mérhető Quick Win projektek végrehajtása.'
+				'A külön díjas 30 napos pilot-támogatási csomag és az opcionális AI Champion program a workshop után választható.'
 		}
 	]}
 />
 
+<!-- Folytatás a workshop után -->
+<section class="border-t border-[var(--color-border)] bg-[var(--color-surface-alt)]">
+	<div class="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
+		<div class="max-w-3xl">
+			<div class="text-xs font-semibold tracking-widest text-[var(--color-text-subtle)] uppercase">
+				Választható folytatás
+			</div>
+			<h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-text)] md:text-4xl">
+				A műhelytől a csapat működéséig
+			</h2>
+			<p class="mt-4 text-lg leading-relaxed text-[var(--color-text-muted)]">
+				Az alap workshop különálló program. A pilot-támogatás külön díjas csomag, az AI Champion program pedig opcionális folytatás.
+			</p>
+		</div>
+
+		<div class="mt-10 grid gap-6 md:grid-cols-3">
+			<article class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+				<h3 class="text-lg font-semibold tracking-tight text-[var(--color-text)]">Alap workshop</h3>
+				<p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+					1 nap vagy 2 fél nap. Azonos programdíj. Saját vállalati esetek.
+				</p>
+			</article>
+			<article class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+				<h3 class="text-lg font-semibold tracking-tight text-[var(--color-text)]">
+					Külön díjas 30 napos pilot-támogatási csomag
+				</h3>
+				<p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+					Egynapos műhely kiegészítve 4 hetes szakértői mentorálással és heti strukturált konzultációkkal.
+				</p>
+				<p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+					A kiválasztott 2 kiemelt folyamat éles gyakorlati bevezetése és finomhangolása a csapatban.
+				</p>
+			</article>
+			<article class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+				<h3 class="text-lg font-semibold tracking-tight text-[var(--color-text)]">
+					Opcionális AI Champion program
+				</h3>
+				<p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+					Önként jelentkező, motivált munkatársak felkészítése az AI helyi alkalmazásának támogatására.
+					Vezetők és más munkatársak egyaránt részt vehetnek; a működéshez mandátum, védett idő és
+					szakmai támogatás szükséges.
+				</p>
+			</article>
+		</div>
+	</div>
+</section>
+
+<section
+	id="gyakori-kerdesek"
+	class="border-t px-6 py-16 lg:px-10 lg:py-24"
+	style="border-color: var(--color-border); background-color: var(--color-surface-alt); color: var(--color-text);"
+>
+	<div class="mx-auto max-w-7xl">
+		<h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Gyakori kérdések és válaszok</h2>
+		<div class="mt-10 grid gap-6 md:grid-cols-2">
+			<article class="rounded-2xl border p-6" style="border-color: var(--color-border); background-color: var(--color-surface);">
+				<h3 class="text-lg font-semibold">Milyen előfeltételei vannak a programnak?</h3>
+				<p class="mt-3 text-sm leading-relaxed" style="color: var(--color-text-muted);">
+					Nem szükséges programozói előképzettség. Sem külön vezetői workshopon való részvétel, sem már meglévő vállalati AI-keretrendszer nem előfeltétel.
+				</p>
+			</article>
+			<article class="rounded-2xl border p-6" style="border-color: var(--color-border); background-color: var(--color-surface);">
+				<h3 class="text-lg font-semibold">Hogyan becsüljük meg a megtérülést?</h3>
+				<p class="mt-3 text-sm leading-relaxed" style="color: var(--color-text-muted);">
+					Külön kezeljük a felszabaduló munkaidőt és a tényleges pénzügyi megtakarítást. A számítás tartalmazza a licencek, a bevezetés, a felügyelet és a hibajavítás költségeit.
+				</p>
+			</article>
+			<article class="rounded-2xl border p-6" style="border-color: var(--color-border); background-color: var(--color-surface);">
+				<h3 class="text-lg font-semibold">Milyen kontrollokat tartalmaz a digitális kolléga feladatleírása?</h3>
+				<p class="mt-3 text-sm leading-relaxed" style="color: var(--color-text-muted);">
+					Meghatározza a feladatot és a hozzáféréseket, rögzíti a korlátokat, az emberi ellenőrzést, az incidenskezelést és a leállítás módját.
+				</p>
+			</article>
+			<article class="rounded-2xl border p-6" style="border-color: var(--color-border); background-color: var(--color-surface);">
+				<h3 class="text-lg font-semibold">Hol tartható a workshop?</h3>
+				<p class="mt-3 text-sm leading-relaxed" style="color: var(--color-text-muted);">
+					Budapesten vagy országos kiszállással.
+				</p>
+			</article>
+		</div>
+	</div>
+</section>
+
 <Cta
-	title="Egy jól levezetett workshop a különbség pilot és pilotbukás között."
-	description="Ha a csapat maga fedezi fel a use‑case‑eket és tervezi meg a bevezetést, sokkal nagyobb eséllyel áll melléd a végrehajtásban is. Foglaljunk időpontot egy előkészítő beszélgetésre."
+	title="A jól levezetett workshop biztosítja, hogy a pilotprojekt felszálljon, ne pedig lezuhanjon"
+	description="Ha a csapat maga fedezi fel a use-case-eket és tervezi meg a bevezetést, sokkal nagyobb eséllyel áll melléd a végrehajtásban is. Foglaljunk időpontot egy előkészítő beszélgetésre."
 	primaryLabel="Workshop foglalása"
 	primaryHref={resolve('/kapcsolat?tema=workshop')}
 	secondaryLabel="Nézd meg a governance pillért"
