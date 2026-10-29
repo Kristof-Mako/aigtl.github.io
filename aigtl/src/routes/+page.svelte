@@ -69,6 +69,26 @@
 			if (frame) window.cancelAnimationFrame(frame);
 		};
 	});
+
+	onMount(() => {
+		const circuit = document.querySelector<HTMLElement>('[data-offer-circuit]');
+		if (!circuit) return;
+
+		const updateCurrent = () => {
+			const bounds = circuit.getBoundingClientRect();
+			const scrollProgress = (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height);
+			const progress = Math.max(0, Math.min(1, (scrollProgress - 0.08) * 1.5));
+			circuit.style.setProperty('--current-progress', `${progress * 100}%`);
+		};
+
+		updateCurrent();
+		window.addEventListener('scroll', updateCurrent, { passive: true });
+		window.addEventListener('resize', updateCurrent);
+		return () => {
+			window.removeEventListener('scroll', updateCurrent);
+			window.removeEventListener('resize', updateCurrent);
+		};
+	});
 </script>
 
 <svelte:head>
@@ -298,13 +318,53 @@
 		text-decoration-color: var(--color-border-strong);
 	}
 	.service-route:hover { color: var(--color-primary-hover); }
+	.home-offer-circuit-list {
+		position: relative;
+		display: grid;
+		gap: 1rem;
+		padding-left: 2rem;
+	}
+	.home-offer-circuit-list::before {
+		position: absolute;
+		top: 1rem;
+		bottom: 1rem;
+		left: 0.5rem;
+		width: 1.5px;
+		background: var(--color-secondary);
+		box-shadow: 0 0 8px color-mix(in srgb, var(--color-secondary) 50%, transparent);
+		content: '';
+	}
+	.home-offer-circuit-list::after {
+		position: absolute;
+		top: var(--current-progress, 0%);
+		left: 0.5rem;
+		width: 0.55rem;
+		height: 0.55rem;
+		border-radius: 50%;
+		background: var(--color-accent);
+		box-shadow: 0 0 10px var(--color-accent);
+		content: '';
+		transform: translate(-40%, -50%);
+	}
+	.home-offer-circuit-card { position: relative; }
+	.home-offer-circuit-card::before {
+		position: absolute;
+		top: 1.5rem;
+		left: -1.5rem;
+		width: 1.5rem;
+		border-top: 1.5px solid var(--color-secondary);
+		content: '';
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.home-offer-circuit-list::after { box-shadow: none; }
+	}
 </style>
 
 <TrustBar variant="light" />
 
 <section id="danger" class="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
-	<div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
-		<div>
+	<div class="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+		<div class="lg:col-span-5">
 			<h2 class="text-2xl font-semibold tracking-tight text-[var(--color-text)] md:text-3xl">
 				A valós kockázat:<br>Ellenőrizetlen Shadow AI az irodában
 			</h2>
@@ -314,49 +374,55 @@
 			<p class="mt-4 text-base leading-relaxed text-[var(--color-text-muted)]">
 				A szigorú tiltás nem vezet eredményre: ha a vállalat nem bocsát rendelkezésre szabályozott keretrendszert és belső irányelveket, az eszközhasználat a láthatatlan sávba szorul. Célunk, hogy ezt a rejtett gyakorlatot átlátható, kockázatmentesített és üzletileg közvetlenül megtérülő folyamattá alakítsuk.
 			</p>
-			<figure class="mt-6 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]">
-				<img
-					src={`${base}/how-shadow-ai-occurs.png`}
-					alt="A Shadow AI kialakulásának folyamata a munkatársi eszközhasználattól a szervezeti kockázatokig"
-					class="h-auto w-full"
-					loading="lazy"
-				/>
-				<figcaption class="px-3 py-2 text-xs text-[var(--color-text-muted)]">
-					Forrás: <a
-						href="https://www.giskard.ai/knowledge/what-is-shadow-ai-and-how-to-prevent-this-threat-in-ai-security"
-						target="_blank"
-						rel="noreferrer"
-						class="underline underline-offset-4"
-					>Giskard · What is Shadow AI and how to prevent this threat in AI security</a>
-				</figcaption>
-			</figure>
 		</div>
 
-		<div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-8 lg:p-10">
+		<figure class="w-full overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] lg:col-span-7 lg:w-2/3 lg:justify-self-center">
+			<img
+				src={`${base}/fear-of-shadow-ai.png`}
+				alt="A Shadow AI kialakulásának folyamata a munkatársi eszközhasználattól a szervezeti kockázatokig"
+				class="block h-auto w-full"
+				loading="lazy"
+			/>
+			<figcaption class="px-3 py-2 text-xs text-[var(--color-text-muted)]">
+				Forrás: <a
+					href="https://www.miniorange.com/blog/assets/2026/what-are-shadow-ai-agents.webp"
+					target="_blank"
+					rel="noreferrer"
+					class="underline underline-offset-4"
+				>miniOrange · Shadow AI agents</a>
+			</figcaption>
+		</figure>
+	</div>
+</section>
+
+<section class="border-t border-[var(--color-border)] bg-[var(--color-surface-alt)]">
+	<div class="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
+		<div class="max-w-3xl">
 			<div class="text-xs font-semibold tracking-widest text-[var(--color-text-subtle)] uppercase">Amit az AIGTL ad</div>
-			<h3 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--color-text)]">
+			<h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--color-text)] md:text-3xl">
 				Háromszintű, auditálható program a vezetők, a szervezet és a HR kezébe.
-			</h3>
-			<div class="mt-6 grid gap-4">
-				<div class="rounded-xl bg-[var(--color-surface)] p-5 ring-1 ring-[var(--color-border)]">
+			</h2>
+		</div>
+		<div class="home-offer-circuit mt-10" data-offer-circuit>
+			<div class="home-offer-circuit-list">
+				<article class="home-offer-circuit-card rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
 					<div class="text-xs font-semibold tracking-wider text-[var(--color-text-subtle)] uppercase">Vezetői szint</div>
-					<p class="mt-2 text-sm text-[var(--color-text-muted)]">
+					<p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
 						AI-nyilvántartás, Shadow AI audit, belső AI szabályzat, licenc- és költségoptimalizálás.
 					</p>
-				</div>
-				<div class="rounded-xl bg-[var(--color-surface)] p-5 ring-1 ring-[var(--color-border)]">
+				</article>
+				<article class="home-offer-circuit-card rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
 					<div class="text-xs font-semibold tracking-wider text-[var(--color-text-subtle)] uppercase">Operatív szint</div>
-					<p class="mt-2 text-sm text-[var(--color-text-muted)]">
+					<p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
 						Középvezetői workshop, use-case térkép és 30 napos ROI-becslés. Az AI Champion program külön választható folytatás.
 					</p>
-				</div>
-				<div class="rounded-xl bg-[var(--color-surface)] p-5 ring-1 ring-[var(--color-border)]">
+				</article>
+				<article class="home-offer-circuit-card rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
 					<div class="text-xs font-semibold tracking-wider text-[var(--color-text-subtle)] uppercase">HR szint</div>
-					<p class="mt-2 text-sm text-[var(--color-text-muted)]">
+					<p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
 						Vállalati AI-alapvizsga, Neumann-kurzus és HR dashboard a vizsgaeredmények követésére.
 					</p>
-				</div>
-			</div>
+				</article>
 		</div>
 	</div>
 </section>
@@ -366,14 +432,14 @@
 		<h2 class="text-3xl font-semibold tracking-tight text-[var(--color-text)] md:text-4xl">
 			Miért akadnak el a hagyományos AI-bevezetések?
 		</h2>
+		<p class="mt-5 text-base leading-relaxed text-[var(--color-text-muted)]">
+			A <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2025" target="_blank" rel="noreferrer" class="underline underline-offset-4">McKinsey 2025-ös globális felmérése</a> szerint a szervezetek közel kétharmada még nem kezdte el az AI vállalati szintű skálázását, a <a href="https://www.gartner.com/en/newsroom/press-releases/2024-07-29-gartner-predicts-30-percent-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025" target="_blank" rel="noreferrer" class="underline underline-offset-4">Gartner 2024-es előrejelzése</a> pedig azt valószínűsítette, hogy a generatív AI-projektek legalább 30%-át a proof of concept után 2025 végéig felhagyják. Úgy látjuk, hogy ennek hátterében gyakran kettős hiányosság áll: az IT-beszállítók ritkán kezelik a munkavállalói ellenállást és a vezetői aggályokat, a képzőcégeknek pedig sokszor hiányzik a műszaki auditálási és EU AI Act szabályozási tapasztalata.
+		</p>
 	</div>
 
 	<div class="mt-12 grid gap-6 md:grid-cols-2">
 		<div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-7">
 			<p class="text-sm leading-relaxed text-[var(--color-text-muted)]">
-				<strong>A sikeres integrációhoz a szervezeti támogatás és a műszaki audit egyensúlya szükséges:</strong>
-			</p>
-			<p class="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
 				<strong>Szervezeti és vezetői támogatás:</strong> A Sensa több mint 10 éves hazai szervezetfejlesztési tapasztalata (kiemelten gyártó, logisztikai és pénzügyi szektorban működő vállalatoknál) biztosítja, hogy a középvezetők ne fenyegetést, hanem megbízható munkaeszközt lássanak az új technológiában.
 			</p>
 		</div>
@@ -389,17 +455,17 @@
 	<div class="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
 		<div class="max-w-3xl">
 			<h2 class="service-title text-3xl font-semibold tracking-tight md:text-4xl">
-				A háromlépcsős AIGTL modell: A jogi kockázatkezeléstől az igazolt szervezeti tudásig
+				A háromlépcsős AIGTL modell:<br>Vezetői döntésektől a dolgozói AI-műveltségig
 			</h2>
 			<p class="service-copy mt-4 text-lg leading-relaxed">
-				A program moduláris szinteken vezeti végig a szervezetet. A modell megakadályozza, hogy a vállalat felesleges szoftverlicencekre (például kihasználatlan Microsoft Copilot vagy prémium API előfizetésekre) fordítson büdzsét mindaddig, amíg a folyamatok és felelősségi körök nincsenek tisztázva.
+				A három programlépcső a vezetői döntésektől a középvezetők gyakorlati munkáján át a dolgozói AI-műveltségig épül fel. A folyamat segít, hogy a szervezet a használati esetek, a folyamatok és a felelősségi körök tisztázása után mérlegelje a szükséges szoftverlicenceket.
 			</p>
 		</div>
 
-		<div class="service-card mt-10 rounded-2xl border p-7">
+		<div class="service-card mt-10 rounded-2xl border border-l-4 border-l-[var(--color-primary)] bg-[var(--color-surface-alt)] p-7">
 			<div class="flex flex-col justify-between gap-5 md:flex-row md:items-center">
 				<div class="max-w-3xl">
-					<p class="service-eyebrow text-xs font-semibold tracking-wider uppercase">Önálló belépőpont · fél nap</p>
+					<p class="service-eyebrow text-xs font-semibold tracking-wider uppercase">Önálló belépőpont · fél nap · nem része a három programlépcsőnek</p>
 					<h3 class="service-title mt-3 text-xl font-semibold tracking-tight">Vezetői governance audit</h3>
 					<p class="service-copy mt-3 text-sm leading-relaxed">
 						Feltérképezzük a vállalat jelenlegi AI-használatát és az EU AI Act szerinti kitettségét, hogy meghatározzuk a következő lépéseket.
@@ -418,7 +484,7 @@
 		<div class="mt-12 grid gap-6 md:grid-cols-3">
 			<div id="vezetoi-workshop" class="service-card rounded-2xl border p-7">
 				<p class="service-eyebrow text-xs font-semibold tracking-wider uppercase">1. szint</p>
-				<h3 class="service-title mt-3 text-xl font-semibold tracking-tight">1. szint / Vezetői AI-workshop</h3>
+				<h3 class="service-title mt-3 text-xl font-semibold tracking-tight">Vezetői AI-workshop</h3>
 				<p class="service-copy mt-2 text-sm font-medium"><strong>Időtartam:</strong> 1 nap vagy 2 fél nap · <strong>Azonos programdíj</strong></p>
 				<p class="service-copy mt-3 text-sm leading-relaxed"><strong>Célcsoport:</strong> Cégvezetés (CEO), pénzügyi vezető (CFO), jogi és IT igazgató, HR- és üzleti vezetők.</p>
 				<p class="service-sequence mt-3 text-sm font-medium leading-relaxed">Helyzetkép → lehetőségek → keretek → döntések</p>

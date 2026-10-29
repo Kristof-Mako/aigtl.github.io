@@ -26,7 +26,7 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-6 pt-20 pb-20 lg:px-10 lg:pt-28 lg:pb-28">
-		<div class="max-w-3xl">
+		<div class="max-w-5xl">
 			{#if eyebrow}
 				<div class="text-xs font-semibold tracking-[0.2em] uppercase" style={`color: ${eyebrowColor};`}>
 					{eyebrow}
@@ -34,7 +34,7 @@
 			{/if}
 			<h1
 				class="mt-5 text-4xl leading-[1.08] font-semibold tracking-tight md:text-5xl lg:text-6xl"
-				style="color: var(--color-text);"
+				style="color: var(--color-text); white-space: pre-line;"
 			>
 				{title}
 			</h1>
