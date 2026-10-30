@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={resolve('/favicon.svg')} />
+	<link rel="icon" type="image/x-icon" href={resolve('/favicon_io/favicon.ico')} />
 </svelte:head>
 
 <div

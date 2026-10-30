@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
+	import { base, resolve } from '$app/paths';
 	import TrustBar from '$lib/components/TrustBar.svelte';
 	import Cta from '$lib/components/Cta.svelte';
-	import ImagePlaceholder from '$lib/components/ImagePlaceholder.svelte';
 	import CircuitBackdrop from '$lib/components/CircuitBackdrop.svelte';
 </script>
 
@@ -16,7 +15,7 @@
 
 <section class="relative isolate overflow-hidden" data-circuit-hero style="background-color: var(--color-bg); color: var(--color-text);">
 	<CircuitBackdrop variant="about" />
-	<div class="relative z-10 mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
+	<div class="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:px-10 lg:py-24">
 		<div class="max-w-3xl">
 			<div class="text-xs font-semibold tracking-[0.2em] uppercase" style="color: var(--color-accent);">Rólunk</div>
 			<h1 class="mt-5 text-4xl leading-[1.1] font-semibold tracking-tight md:text-5xl">
@@ -27,6 +26,14 @@
 				csapat. Nem technológiát adunk el, hanem strukturált, dokumentálható eredményt.
 			</p>
 		</div>
+		<figure class="mx-auto w-full max-w-md overflow-hidden rounded-3xl border shadow-xl lg:ml-auto" style="border-color: var(--color-border); background-color: var(--color-surface); box-shadow: 0 24px 60px var(--color-shadow);">
+			<img
+				src={resolve('/AIGTL.png')}
+				alt="AIGTL"
+				class="block h-auto w-full object-contain"
+				fetchpriority="high"
+			/>
+		</figure>
 	</div>
 </section>
 
@@ -44,9 +51,16 @@
 			</p>
 		</div>
 
-		<div class="mt-10 grid gap-6 md:grid-cols-2">
+		<div class="mx-auto mt-10 grid max-w-3xl gap-6 md:grid-cols-2">
 			<article class="overflow-hidden rounded-2xl border" style="border-color: var(--color-border); background-color: var(--color-surface);">
-				<ImagePlaceholder name="voros-akos-portre" ratio="1/1" />
+				<img
+					src={`${base}/VorosAkos.jpg`}
+					alt="Vörös Ákos portréja"
+					width="861"
+					height="1291"
+					loading="lazy"
+					class="block aspect-[4/5] w-full object-cover object-[center_24%]"
+				/>
 				<div class="p-6">
 					<h3 class="text-lg font-semibold tracking-tight">Vörös Ákos</h3>
 					<p class="mt-2 text-sm leading-relaxed" style="color: var(--color-text-muted);">
@@ -55,7 +69,14 @@
 				</div>
 			</article>
 			<article class="overflow-hidden rounded-2xl border" style="border-color: var(--color-border); background-color: var(--color-surface);">
-				<ImagePlaceholder name="makula-tibor-portre" ratio="1/1" />
+				<img
+					src={`${base}/placeholder-person.png`}
+					alt="Makula Tibor portréjának helye"
+					width="861"
+					height="1291"
+					loading="lazy"
+					class="block aspect-[4/5] w-full object-cover object-center"
+				/>
 				<div class="p-6">
 					<h3 class="text-lg font-semibold tracking-tight">Makula Tibor</h3>
 					<p class="mt-2 text-sm leading-relaxed" style="color: var(--color-text-muted);">

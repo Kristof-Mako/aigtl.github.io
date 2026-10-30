@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
+	import { base, resolve } from '$app/paths';
 	import { page } from '$app/state';
 
 	type NavItem = { href: string; label: string };
@@ -27,10 +27,7 @@
 <header class="site-header sticky top-0 z-40 w-full border-b backdrop-blur">
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
 		<a href={resolve('/')} class="group flex items-center gap-3" aria-label="AIGTL kezdőoldal">
-			<span
-				class="brand-mark grid h-9 w-9 place-items-center rounded-lg font-semibold tracking-tight"
-				>A</span
-			>
+			<img src={`${base}/AIGTL-full.png`} alt="" aria-hidden="true" class="h-11 w-11 rounded-lg object-contain" />
 			<span class="flex flex-col leading-tight">
 				<span class="brand-name text-sm font-semibold tracking-tight">AIGTL</span>
 				<span class="brand-subtitle hidden text-xs sm:block"
@@ -117,7 +114,6 @@
 		border-color: var(--color-border);
 		background-color: color-mix(in srgb, var(--color-surface) 85%, var(--color-transparent));
 	}
-	.brand-mark,
 	.primary-action {
 		background-color: var(--color-primary);
 		color: var(--color-on-primary);

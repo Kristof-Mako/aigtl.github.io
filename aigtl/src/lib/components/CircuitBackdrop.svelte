@@ -46,9 +46,17 @@
 
 	const traces = $derived(layouts[variant]);
 
+	const scaleTrace = (d: string, width: number, height: number) =>
+		d.replace(/M(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)/, (_, x, y) =>
+			`M${(Number(x) * width) / 1440} ${(Number(y) * height) / 560}`
+		)
+			.replace(/h(-?\d+(?:\.\d+)?)/g, (_, x) => `h${(Number(x) * width) / 1440}`)
+			.replace(/v(-?\d+(?:\.\d+)?)/g, (_, y) => `v${(Number(y) * height) / 560}`);
+
 	onMount(() => {
 		const field = document.querySelector<SVGSVGElement>('[data-circuit-backdrop]');
 		if (!field) return;
+		const hero = field.closest<HTMLElement>('[data-circuit-hero]');
 		const paths = Array.from(field.querySelectorAll<SVGPathElement>('.scroll-path'));
 		const splits = Array.from(field.querySelectorAll<SVGPathElement>('.scroll-split'));
 		const endpoints = paths.map((path) => field.querySelector<SVGCircleElement>(`#${path.dataset.endpoint}`));
@@ -56,10 +64,23 @@
 		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const packetDurations = [8500, 9700, 10900, 9200];
 		let frame = 0;
+		const updateResponsiveGeometry = () => {
+			const width = Math.max(field.clientWidth, 1);
+			const height = Math.max(field.clientHeight, 1);
+			field.setAttribute('viewBox', `0 0 ${width} ${height}`);
+			paths.forEach((path, index) => {
+				const trace = traces[index];
+				if (trace) path.setAttribute('d', scaleTrace(trace.d, width, height));
+			});
+			splits.forEach((split) => {
+				const trace = traces[Number(split.dataset.traceIndex)];
+				if (trace?.split) split.setAttribute('d', scaleTrace(trace.split, width, height));
+			});
+		};
+		updateResponsiveGeometry();
 
 		const draw = (time = 0) => {
 			frame = 0;
-			const hero = field.closest<HTMLElement>('[data-circuit-hero]');
 			const scrollProgress = Math.max(0, Math.min(1, (window.scrollY / Math.max(hero?.offsetHeight ?? 1, 1)) * 1.2));
 			const progress = prefersReducedMotion ? 1 : 0.2 + scrollProgress * 0.8;
 
@@ -101,11 +122,19 @@
 		const redraw = () => {
 			if (!prefersReducedMotion && !frame) frame = window.requestAnimationFrame(draw);
 		};
+		const redrawOnResize = () => {
+			updateResponsiveGeometry();
+			if (frame) window.cancelAnimationFrame(frame);
+			frame = window.requestAnimationFrame(draw);
+		};
+		const resizeObserver = new ResizeObserver(redrawOnResize);
+		resizeObserver.observe(hero ?? field);
 		window.addEventListener('scroll', redraw, { passive: true });
-		window.addEventListener('resize', redraw);
+		window.addEventListener('resize', redrawOnResize);
 		return () => {
 			window.removeEventListener('scroll', redraw);
-			window.removeEventListener('resize', redraw);
+			window.removeEventListener('resize', redrawOnResize);
+			resizeObserver.disconnect();
 			if (frame) window.cancelAnimationFrame(frame);
 		};
 	});
@@ -119,7 +148,7 @@
 	</g>
 	<g class="splits">
 		{#each traces as trace, index (index)}
-			{#if trace.split}<path class="scroll-split" data-reveal-at={trace.splitAt} d={trace.split} />{/if}
+			{#if trace.split}<path class="scroll-split" data-trace-index={index} data-reveal-at={trace.splitAt} d={trace.split} />{/if}
 		{/each}
 	</g>
 	<g class="endpoints">

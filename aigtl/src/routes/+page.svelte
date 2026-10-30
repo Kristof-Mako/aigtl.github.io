@@ -10,11 +10,33 @@
 
 		const paths = Array.from(hero.querySelectorAll<SVGPathElement>('.hero-scroll-path'));
 		const splits = Array.from(hero.querySelectorAll<SVGPathElement>('.hero-scroll-split'));
+		const field = hero.querySelector<SVGSVGElement>('.hero-circuit-field');
 		const endpoints = paths.map((path) => hero.querySelector<SVGCircleElement>(`#${path.dataset.endpoint}`));
 		const packets = paths.map((path) => hero.querySelector<SVGCircleElement>(`#${path.dataset.packet}`));
 		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const packetDurations = [8500, 9700, 10900, 9200, 10300];
 		let frame = 0;
+		const updateResponsiveGeometry = () => {
+			const width = Math.max(hero.clientWidth, 1);
+			const height = Math.max(hero.clientHeight, 1);
+			field?.setAttribute('viewBox', `0 0 ${width} ${height}`);
+			const pathData = [
+				`M${width} ${height * 0.12}h-${width * 0.064}v${height * 0.083}h-${width * 0.033}v${height * 0.051}h-${width * 0.049}`,
+				`M${width} ${height * 0.35}h-${width * 0.035}v-${height * 0.049}h-${width * 0.064}v${height * 0.077}h-${width * 0.036}v${height * 0.06}h-${width * 0.054}`,
+				`M${width} ${height * 0.69}h-${width * 0.057}v-${height * 0.066}h-${width * 0.038}v-${height * 0.049}h-${width * 0.063}`,
+				`M0 ${height * 0.78}h${width * 0.045}v-${height * 0.069}h${width * 0.042}v-${height * 0.052}h${width * 0.04}`,
+				`M0 ${height * 0.26}h${width * 0.03}v${height * 0.049}h${width * 0.052}v-${height * 0.074}h${width * 0.041}`
+			];
+			paths.forEach((path, index) => path.setAttribute('d', pathData[index]));
+			const splitData = [
+				`M${width * 0.936} ${height * 0.203}v${height * 0.066}h-${width * 0.028}v${height * 0.046}`,
+				`M${width * 0.965} ${height * 0.306}h-${width * 0.029}v-${height * 0.066}h-${width * 0.026}`,
+				`M${width * 0.045} ${height * 0.68}h${width * 0.034}v-${height * 0.043}h${width * 0.032}`,
+				`M${width * 0.08} ${height * 0.31}v${height * 0.06}h${width * 0.03}v${height * 0.04}`
+			];
+			splits.forEach((split, index) => split.setAttribute('d', splitData[index]));
+		};
+		updateResponsiveGeometry();
 		const drawCircuits = (time = 0) => {
 			frame = 0;
 			const scrollProgress = Math.max(
@@ -60,12 +82,17 @@
 		const redrawOnScroll = () => {
 			if (!prefersReducedMotion && !frame) frame = window.requestAnimationFrame(drawCircuits);
 		};
+		const redrawOnResize = () => {
+			updateResponsiveGeometry();
+			if (frame) window.cancelAnimationFrame(frame);
+			frame = window.requestAnimationFrame(drawCircuits);
+		};
 		window.addEventListener('scroll', redrawOnScroll, { passive: true });
-		window.addEventListener('resize', redrawOnScroll);
+		window.addEventListener('resize', redrawOnResize);
 
 		return () => {
 			window.removeEventListener('scroll', redrawOnScroll);
-			window.removeEventListener('resize', redrawOnScroll);
+			window.removeEventListener('resize', redrawOnResize);
 			if (frame) window.cancelAnimationFrame(frame);
 		};
 	});
@@ -485,7 +512,7 @@
 			<div id="vezetoi-workshop" class="service-card rounded-2xl border p-7">
 				<p class="service-eyebrow text-xs font-semibold tracking-wider uppercase">1. szint</p>
 				<h3 class="service-title mt-3 text-xl font-semibold tracking-tight">Vezetői AI-workshop</h3>
-				<p class="service-copy mt-2 text-sm font-medium"><strong>Időtartam:</strong> 1 nap vagy 2 fél nap · <strong>Azonos programdíj</strong></p>
+				<p class="service-copy mt-2 text-sm font-medium"><strong>Időtartam:</strong> 1 nap vagy 2 fél nap</p>
 				<p class="service-copy mt-3 text-sm leading-relaxed"><strong>Célcsoport:</strong> Cégvezetés (CEO), pénzügyi vezető (CFO), jogi és IT igazgató, HR- és üzleti vezetők.</p>
 				<p class="service-sequence mt-3 text-sm font-medium leading-relaxed">Helyzetkép → lehetőségek → keretek → döntések</p>
 				<div class="service-copy mt-4 space-y-3 text-sm leading-relaxed">
@@ -504,7 +531,7 @@
 			<div class="service-card rounded-2xl border p-7">
 				<p class="service-eyebrow text-xs font-semibold tracking-wider uppercase">2. szint</p>
 				<h3 class="service-title mt-3 text-xl font-semibold tracking-tight">Középvezetői use-case műhely és változáskezelés</h3>
-				<p class="service-copy mt-2 text-sm font-medium"><strong>Időtartam:</strong> 1 nap vagy 2 fél nap · <strong>Azonos programdíj</strong></p>
+				<p class="service-copy mt-2 text-sm font-medium"><strong>Időtartam:</strong> 1 nap vagy 2 fél nap</p>
 				<p class="service-copy mt-3 text-sm leading-relaxed"><strong>Célcsoport:</strong> Operatív vezetők, funkcionális csoportvezetők (beszerzés, értékesítés, pénzügy, HR).</p>
 				<p class="service-copy mt-2 text-sm leading-relaxed"><strong>Tartalom:</strong> Szervezeti félelmek oldása, a manuális adminisztratív terhek azonosítása és use-case-ek kidolgozása, 30 napos ROI-becsléssel és rangsorolással.</p>
 				<p class="service-copy mt-2 text-sm leading-relaxed"><strong>Gyakorlati kimenetek:</strong> Bejövő árajánlatok és számlák előszűrése, szerződésváltozatok eltéréseinek összevetése, vezetői összefoglalók automatikus generálása.</p>
@@ -533,7 +560,7 @@
 		</div>
 
 		<p class="service-copy mt-8 max-w-3xl text-base leading-relaxed">
-			A fél napos vezetői governance audit különálló, önálló belépőpont. A három számozott programlépcső első eleme a Vezetői AI-workshop; ez 1 napos vagy 2 fél napos formában, azonos programdíjjal érhető el. A szervezet a valós eredmények tükrében dönthet a további szintekről.
+			A fél napos vezetői governance audit különálló, önálló belépőpont. A három számozott programlépcső első eleme a Vezetői AI-workshop. Ez 1 napos vagy 2 fél napos formában. A szervezet a valós eredmények tükrében dönthet a további szintekről.
 		</p>
 	</div>
 </section>
@@ -655,7 +682,7 @@
 		<div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
 			<h3 class="text-base font-semibold text-[var(--color-text)]">Mekkora időráfordítást igényel a folyamat a cég munkatársaitól?</h3>
 			<p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-				A fél napos vezetői governance audit önálló szolgáltatás. A Vezetői AI-workshop 1 napos vagy 2 fél napos formában választható, azonos programdíjjal; a középvezetői program részleteit a szolgáltatásoldal ismerteti.
+				A fél napos vezetői governance audit önálló szolgáltatás. A Vezetői AI-workshop 1 napos vagy 2 fél napos formában választható. A középvezetői program részleteit a szolgáltatásoldal ismerteti.
 			</p>
 		</div>
 		<div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">

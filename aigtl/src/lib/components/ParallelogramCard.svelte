@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { Snippet } from 'svelte';
 
 	type Props = {
@@ -8,13 +9,32 @@
 	};
 
 	let { href, packetDuration = '3.8s', children }: Props = $props();
-	const trace = 'M0 96H424L520 0';
+	let cardElement: HTMLAnchorElement;
+	let cardWidth = $state(520);
+	let viewBox = $state('0 0 520 96');
+	let trace = $state('M0 96H424L520 0');
+
+	onMount(() => {
+		const updateGeometry = () => {
+			const width = cardElement.clientWidth;
+			const height = cardElement.clientHeight;
+			const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+			const slant = 6 * rootFontSize;
+			cardWidth = width;
+			viewBox = `0 0 ${width} ${height}`;
+			trace = `M0 ${height}H${Math.max(0, width - slant)}L${width} 0`;
+		};
+		const observer = new ResizeObserver(updateGeometry);
+		observer.observe(cardElement);
+		updateGeometry();
+		return () => observer.disconnect();
+	});
 </script>
 
-<a class="parallelogram-card" {href}>
-	<svg class="card-circuit" viewBox="0 0 520 96" preserveAspectRatio="none" aria-hidden="true">
+<a class="parallelogram-card" {href} bind:this={cardElement}>
+	<svg class="card-circuit" {viewBox} preserveAspectRatio="none" aria-hidden="true">
 		<path class="card-trace" pathLength="100" d={trace} />
-		<circle class="card-endpoint" cx="520" cy="0" r="3.5" />
+		<circle class="card-endpoint" cx={cardWidth} cy="0" r="3.5" />
 		<circle class="card-packet" r="3">
 			<animateMotion dur={packetDuration} repeatCount="indefinite" path={trace} />
 		</circle>

@@ -6,10 +6,11 @@
 	<div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-4 lg:px-10">
 		<div class="lg:col-span-2">
 			<div class="flex items-center gap-3">
-				<span
-					class="brand-mark grid h-9 w-9 place-items-center rounded-lg font-semibold tracking-tight"
-					>A</span
-				>
+				<img
+					src={resolve('/AIGTL-full.png')}
+					alt="AIGTL"
+					class="brand-mark h-9 w-9 rounded-lg object-contain"
+				/>
 				<div class="flex flex-col leading-tight">
 					<span class="brand-name text-sm font-semibold tracking-tight">AIGTL</span>
 					<span class="brand-subtitle text-xs">AI Governance, Transformation &amp; Labs</span>

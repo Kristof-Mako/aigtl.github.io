@@ -100,7 +100,7 @@
 				Workshop modulok
 			</div>
 			<h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-text)] md:text-4xl">
-				Nem előadás, hanem vezetői munkaműhely.
+				Nem előadás, hanem vezetői workshop.
 			</h2>
 			<p class="mt-4 text-lg leading-relaxed text-[var(--color-text-muted)]">
 				A workshop során a résztvevők a saját folyamataikra dolgoznak. Konkrét,
@@ -110,7 +110,6 @@
 
 		<div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-[var(--color-text-muted)]">
 			<span class="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2">1 nap vagy 2 fél nap</span>
-			<span class="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2">Azonos programdíj</span>
 		</div>
 
 		<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -229,7 +228,7 @@
 			<article class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
 				<h3 class="text-lg font-semibold tracking-tight text-[var(--color-text)]">Alap workshop</h3>
 				<p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-					1 nap vagy 2 fél nap. Azonos programdíj. Saját vállalati esetek.
+					1 nap vagy 2 fél nap. Saját vállalati esetek.
 				</p>
 			</article>
 			<article class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
